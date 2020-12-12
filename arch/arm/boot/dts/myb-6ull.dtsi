@@ -9,13 +9,6 @@
 #include "imx6ull-pinfunc-snvs.h"
 &iomuxc {
 	imx6ul-evk {
-		pinctrl_flexcan1: flexcan1grp{
-			fsl,pins = <
-				MX6UL_PAD_UART3_RTS_B__FLEXCAN1_RX	0x1b020
-				MX6UL_PAD_UART3_CTS_B__FLEXCAN1_TX	0x1b020
-			>;
-		};
-
         pinctrl_uart3: uart3grp {
 			fsl,pins = <
 				MX6UL_PAD_UART3_RX_DATA__UART3_DCE_RX	0x1b0b1
@@ -26,6 +19,8 @@
 
         pinctrl_enet1_alt: enet1grp {
 			fsl,pins = <
+				MX6UL_PAD_GPIO1_IO06__ENET1_MDIO	0x1b0b0
+				MX6UL_PAD_GPIO1_IO07__ENET1_MDC		0x1b0b0
 				MX6UL_PAD_ENET1_RX_EN__ENET1_RX_EN	0x1b0b0
 				MX6UL_PAD_ENET1_RX_ER__ENET1_RX_ER	0x1b0b0
 				MX6UL_PAD_ENET1_RX_DATA0__ENET1_RDATA00	0x1b0b0
@@ -40,8 +35,6 @@
         
         pinctrl_enet2_alt: enet2grp {
 			fsl,pins = <
-				MX6UL_PAD_GPIO1_IO06__ENET2_MDIO	0x1b0b0
-				MX6UL_PAD_GPIO1_IO07__ENET2_MDC		0x1b0b0
 				MX6UL_PAD_ENET2_RX_EN__ENET2_RX_EN	0x1b0b0
 				MX6UL_PAD_ENET2_RX_ER__ENET2_RX_ER	0x1b0b0
 				MX6UL_PAD_ENET2_RX_DATA0__ENET2_RDATA00	0x1b0b0
@@ -53,135 +46,58 @@
 				MX6ULL_PAD_SNVS_TAMPER8__GPIO5_IO08	0x1b0b0
 			>;
 		};
+
+		pinctrl_ecspi1_cs_1: ecspi1_cs_grp-1 {
+			fsl,pins = <
+				MX6UL_PAD_CSI_DATA05__GPIO4_IO26  0x10b0
+			>;
+		};
+
+		pinctrl_ecspi1_1: ecspi1grp-1 {
+			fsl,pins = <
+				MX6UL_PAD_CSI_DATA06__ECSPI1_MOSI 0x10b0
+				MX6UL_PAD_CSI_DATA07__ECSPI1_MISO 0x10b0
+				MX6UL_PAD_CSI_DATA04__ECSPI1_SCLK 0x10b0
+			>;
+		};
     };
 };
 
-&i2c2 {
+&ecspi1 {
+	fsl,spi-num-chipselects = <1>;
+	cs-gpios = <&gpio4 26 0>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_ecspi1_1 &pinctrl_ecspi1_cs_1>;
+	status = "okay";
 
-	codec: wm8904@1a {
-		compatible = "wlf,wm8904";
-		reg = <0x1a>;
-		clocks = <&clks IMX6UL_CLK_SAI2>;
-		clock-names = "mclk";
-	};
-
-	ov5640: ov5640@3c {
-		compatible = "ovti,ov5640";
-		reg = <0x3c>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_csi1>;
-		clocks = <&clks IMX6UL_CLK_CSI>;
-		clock-names = "csi_mclk";
-		pwn-gpios = <&gpio1 5 GPIO_ACTIVE_HIGH>;
-		rst-gpios = <&gpio1 9 GPIO_ACTIVE_LOW>;
-		csi_id = <0>;
-		mclk = <24000000>;
-		mclk_source = <0>;
-		status = "disabled";
-		port {
-			ov5640_ep: endpoint {
-				remote-endpoint = <&csi1_ep>;
-			};
+	sc16is752: sc16is752@0 {
+		compatible = "nxp,sc16is752";
+		reg = <0>;
+		spi-max-frequency = <4000000>;
+		clocks = <&sc16is752_clk>;
+		interrupt-parent = <&gpio5>;
+		interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
+		gpio-controller;
+		#gpio-cells = <2>;
+		sc16is752_clk: sc16is752_clk {
+			compatible = "fixed-clock";
+			#clock-cells = <0>;
+			clock-frequency = <14745600>;
 		};
 	};
-
-	ov2659: ov2659@30 {
-		compatible = "ovti,ov2659";
-		reg = <0x30>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_csi1>;
-		clocks = <&clks IMX6UL_CLK_CSI>;
-		clock-names = "xvclk";
-		pwn-gpios = <&gpio1 5 GPIO_ACTIVE_HIGH>;
-	    rst-gpios = <&gpio1 9 GPIO_ACTIVE_LOW>;
-		status = "okay";
-		port {
-			ov2659_ep: endpoint {
-				remote-endpoint = <&csi1_ep>;
-                link-frequencies = /bits/ 64 <70000000>;
-			};
-		};
-	};
-
-};
-
-&fec1 {
-    pinctrl-names = "default";
-    pinctrl-0 = "pinctrl_enet1_alt";
-    phy-reset-gpios = <&gpio5 8 GPIO_ACTIVE_LOW>;
-    phy-reset-duration = <5>;
-    status = "okay";
-    /delete-node/ mdio;
 };
 
 &fec2 {
 	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_enet2_alt>;
-    phy-reset-gpios = <&gpio5 8 GPIO_ACTIVE_LOW>;
-    phy-reset-duration = <5>;
-    status = "okay";
-
-    mdio {
-		#address-cells = <1>;
-		#size-cells = <0>;
-
-		ethphy0: ethernet-phy@0 {
-			compatible = "ethernet-phy-ieee802.3-c22";
-			reg = <0>;
-		};
-		ethphy1: ethernet-phy@1 {
-			compatible = "ethernet-phy-ieee802.3-c22";
-			reg = <1>;
-		};
-	};
-};
-
-&uart3 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_uart3>;
-	fsl,rs485-gpio-txen = <&gpio1 18 GPIO_ACTIVE_HIGH>;
-    linux,rs485-enabled-at-boot-time;
+	pinctrl-0 = <&pinctrl_enet2>;
+	phy-mode = "rmii";
+	phy-handle = <&ethphy1>;
+	phy-reset-gpios = <&gpio5 8 GPIO_ACTIVE_LOW>;
+	phy-reset-duration = <26>;
 	status = "okay";
-};
-
-&flexcan1 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_flexcan1>;
-	xceiver-supply = <&reg_can_3v3>;
-	status = "okay";
-};
-
-&sai2 {
-    status = "okay";
-};
-
-&csi {
-	status = "okay";
-
-	port {
-		csi1_ep: endpoint {
-			remote-endpoint = <&ov2659_ep>;
-		};
-	};
 };
 
 / {
 	model = "Freescale i.MX6 ULL 14x14 EVK Board";
 	compatible = "fsl,imx6ull-14x14-evk", "fsl,imx6ull";
-    sound {
-		compatible = "fsl,imx6ul-evk-wm8904",
-			   "fsl,imx-audio-wm8904";
-		model = "wm8904-audio";
-		cpu-dai = <&sai2>;
-		audio-codec = <&codec>;
-		asrc-controller = <&asrc>;
-		gpr = <&gpr>;
-		audio-routing =
-			"Headphone Jack", "HPOUTL",
-			"Headphone Jack", "HPOUTR",
-			"IN2L", "Line In Jack",
-			"IN2R", "Line In Jack",
-			"Mic", "MICBIAS",
-			"IN1L", "Mic";
-    };
 };
