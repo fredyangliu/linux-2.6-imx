@@ -121,7 +121,7 @@
 		sc16is752_clk: sc16is752_clk {
 			compatible = "fixed-clock";
 			#clock-cells = <0>;
-			clock-frequency = <14745600>;
+			clock-frequency = <1843200>;
 		};
 	};
 };
