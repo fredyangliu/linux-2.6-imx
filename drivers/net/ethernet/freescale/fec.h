@@ -543,6 +543,9 @@ struct fec_enet_private {
 	struct clk *clk_enet_out;
 	struct clk *clk_ptp;
 	struct clk *clk_2x_txclk;
+	int phy_reset;
+	bool phy_reset_active_high;
+	int phy_reset_msec;
 
 	bool ptp_clk_on;
 	struct mutex ptp_clk_mutex;
