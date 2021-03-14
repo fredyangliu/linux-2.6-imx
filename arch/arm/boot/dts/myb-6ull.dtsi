@@ -131,6 +131,7 @@
 	pinctrl-0 = <&pinctrl_enet1_alt>, <&pinctrl_enet1_gpio>;
 	phy-reset-gpios = <&gpio5 6 GPIO_ACTIVE_LOW>;
 	phy-reset-duration = <26>;
+	phy-reset-post-delay=<20>;
 	status = "okay";
 	/delete-node/ mdio;
 };
@@ -142,6 +143,7 @@
 	phy-handle = <&ethphy1>;
 	phy-reset-gpios = <&gpio5 8 GPIO_ACTIVE_LOW>;
 	phy-reset-duration = <26>;
+	phy-reset-post-delay=<20>;
 	status = "okay";
 
 	mdio {
