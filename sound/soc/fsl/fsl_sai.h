@@ -78,12 +78,14 @@
 #define FSL_SAI_MCTL	0x100 /* SAI MCLK Control Register */
 #define FSL_SAI_MDIV	0x104 /* SAI MCLK Divide Register */
 
-#define FSL_SAI_xCSR(tx, off)	(tx ? FSL_SAI_TCSR(off) : FSL_SAI_RCSR(off))
-#define FSL_SAI_xCR1(tx, off)	(tx ? FSL_SAI_TCR1(off) : FSL_SAI_RCR1(off))
-#define FSL_SAI_xCR2(tx, off)	(tx ? FSL_SAI_TCR2(off) : FSL_SAI_RCR2(off))
-#define FSL_SAI_xCR3(tx, off)	(tx ? FSL_SAI_TCR3(off) : FSL_SAI_RCR3(off))
-#define FSL_SAI_xCR4(tx, off)	(tx ? FSL_SAI_TCR4(off) : FSL_SAI_RCR4(off))
-#define FSL_SAI_xCR5(tx, off)	(tx ? FSL_SAI_TCR5(off) : FSL_SAI_RCR5(off))
+#define FSL_SAI_xCSR(tx, ofs)	(tx ? FSL_SAI_TCSR(ofs) : FSL_SAI_RCSR(ofs))
+#define FSL_SAI_xCR1(tx, ofs)	(tx ? FSL_SAI_TCR1(ofs) : FSL_SAI_RCR1(ofs))
+#define FSL_SAI_xCR2(tx, ofs)	(tx ? FSL_SAI_TCR2(ofs) : FSL_SAI_RCR2(ofs))
+#define FSL_SAI_xCR3(tx, ofs)	(tx ? FSL_SAI_TCR3(ofs) : FSL_SAI_RCR3(ofs))
+#define FSL_SAI_xCR4(tx, ofs)	(tx ? FSL_SAI_TCR4(ofs) : FSL_SAI_RCR4(ofs))
+#define FSL_SAI_xCR5(tx, ofs)	(tx ? FSL_SAI_TCR5(ofs) : FSL_SAI_RCR5(ofs))
+#define FSL_SAI_xDR0(tx)	(tx ? FSL_SAI_TDR0 : FSL_SAI_RDR0)
+#define FSL_SAI_xFR0(tx)	(tx ? FSL_SAI_TFR0 : FSL_SAI_RFR0)
 #define FSL_SAI_xMR(tx)		(tx ? FSL_SAI_TMR : FSL_SAI_RMR)
 
 /* SAI Transmit/Receive Control Register */
