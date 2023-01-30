@@ -9,6 +9,16 @@
 #include "mys-imx6ull-14x14-evk.dts"
 #include "myc-y6ull.dtsi"
 
+/ {
+	leds {
+		status = "disabled";
+	};
+
+	gpio-keys {
+		status = "disabled";
+	};
+};
+
 &gpmi {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_gpmi_nand_1>;
