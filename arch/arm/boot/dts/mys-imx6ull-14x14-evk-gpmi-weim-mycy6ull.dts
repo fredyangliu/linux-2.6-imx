@@ -10,6 +10,10 @@
 #include "myc-y6ull.dtsi"
 
 / {
+	backlight {
+		status = "disabled";
+	};
+
 	leds {
 		status = "disabled";
 	};
