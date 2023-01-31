@@ -165,6 +165,8 @@
 &uart8 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_uart8>;
+	rts-gpios = <&gpio3 9 GPIO_ACTIVE_HIGH>;
+	linux,rs485-enabled-at-boot-time;
 	status = "okay";
 };
 

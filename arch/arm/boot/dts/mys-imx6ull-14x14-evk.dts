@@ -183,8 +183,6 @@
 				MX6UL_PAD_UART1_RTS_B__GPIO1_IO19          0x17059 /* SD1 CD */
 				MX6UL_PAD_GPIO1_IO05__USDHC1_VSELECT       0x17059 /* SD1 VSELECT */
 				MX6UL_PAD_GPIO1_IO00__ANATOP_OTG1_ID       0x17059 /* USB OTG1 ID */
-				MX6UL_PAD_CSI_DATA03__GPIO4_IO24           0x0000F0B0
-				MX6UL_PAD_CSI_HSYNC__GPIO4_IO20            0x0000F0B0
 				MX6UL_PAD_GPIO1_IO05__GPIO1_IO05           0x0000F0B0
 				MX6UL_PAD_GPIO1_IO09__GPIO1_IO09           0x0000F0B0
 				MX6UL_PAD_JTAG_MOD__GPIO1_IO10             0x0000F0B0
@@ -196,18 +194,21 @@
 				MX6UL_PAD_NAND_CE1_B__GPIO4_IO14           0x0000F0B0
 				MX6UL_PAD_NAND_DQS__GPIO4_IO16             0x0000F0B0
 				MX6UL_PAD_UART1_CTS_B__GPIO1_IO18          0x0000F0B0
-				MX6UL_PAD_UART2_CTS_B__GPIO1_IO22          0x0000F0B0
+				MX6UL_PAD_UART2_CTS_B__GPIO1_IO22          0x0000F0B0  // uart2 rts
 				MX6UL_PAD_UART2_RTS_B__GPIO1_IO23          0x0000F0B0
-				MX6UL_PAD_UART3_CTS_B__GPIO1_IO26          0x0000F0B0
+				MX6UL_PAD_UART3_CTS_B__GPIO1_IO26          0x0000F0B0  // uart3 rts
 				MX6UL_PAD_UART3_RTS_B__GPIO1_IO27          0x000010B0
 
                 MX6UL_PAD_CSI_DATA02__GPIO4_IO23           0x0001F0B0
+				MX6UL_PAD_CSI_DATA03__GPIO4_IO24           0x0001F0B0  // uart5 rts
                 MX6UL_PAD_CSI_VSYNC__GPIO4_IO19            0x0001F0B0
+				MX6UL_PAD_CSI_HSYNC__GPIO4_IO20            0x0001F0B0  // uart6 rts
                 MX6UL_PAD_LCD_CLK__GPIO3_IO00              0x0001F0B0
                 MX6UL_PAD_LCD_DATA00__GPIO3_IO05           0x0001F0B0
                 MX6UL_PAD_LCD_DATA01__GPIO3_IO06           0x0001F0B0
                 MX6UL_PAD_LCD_DATA02__GPIO3_IO07           0x0001F0B0
                 MX6UL_PAD_LCD_DATA03__GPIO3_IO08           0x0001F0B0
+				MX6UL_PAD_LCD_DATA04__GPIO3_IO09           0x0001F0B0  // uart8 rts
                 MX6UL_PAD_LCD_DATA08__GPIO3_IO13           0x0001F0B0
                 MX6UL_PAD_LCD_DATA09__GPIO3_IO14           0x0001F0B0
                 MX6UL_PAD_LCD_DATA10__GPIO3_IO15           0x0001F0B0
@@ -224,6 +225,7 @@
 
                 MX6UL_PAD_LCD_ENABLE__GPIO3_IO01           0x0001F0B0
                 MX6UL_PAD_LCD_VSYNC__GPIO3_IO03            0x0001F0B0
+				MX6UL_PAD_LCD_HSYNC__GPIO3_IO02            0x0001F0B0  // uart4 rts
 			>;
 		};
 
@@ -456,6 +458,8 @@
 	/* for DTE mode, add below change */
 	/* fsl,dte-mode; */
 	/* pinctrl-0 = <&pinctrl_uart2dte>; */
+	rts-gpios = <&gpio1 22 GPIO_ACTIVE_HIGH>;
+	linux,rs485-enabled-at-boot-time;
 	status = "okay";
 };
 
@@ -470,18 +474,24 @@
 &uart4 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_uart4>;
+	rts-gpios = <&gpio3 2 GPIO_ACTIVE_HIGH>;
+	linux,rs485-enabled-at-boot-time;
 	status = "okay";
 };
 
 &uart5 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_uart5>;
+	rts-gpios = <&gpio4 24 GPIO_ACTIVE_HIGH>;
+	linux,rs485-enabled-at-boot-time;
 	status = "okay";
 };
 
 &uart6 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_uart6>;
+	rts-gpios = <&gpio4 20 GPIO_ACTIVE_HIGH>;
+	linux,rs485-enabled-at-boot-time;
 	status = "okay";
 };
 
