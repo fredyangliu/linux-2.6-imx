@@ -652,7 +652,11 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
 	imx6ulz-14x14-evk.dtb \
 	imx6ulz-14x14-evk-btwifi.dtb \
 	imx6ulz-14x14-evk-gpmi-weim.dtb \
-	imx6ulz-14x14-evk-emmc.dtb
+	imx6ulz-14x14-evk-emmc.dtb \
+	mys-imx6ull-14x14-evk.dtb \
+	mys-imx6ull-14x14-evk-gpmi-weim.dtb \
+	mys-imx6ull-14x14-evk-gpmi-weim-myb6ulx.dtb \
+	mys-imx6ull-14x14-evk-gpmi-weim-mycy6ull.dts
 dtb-$(CONFIG_SOC_IMX7D) += \
 	imx7d-cl-som-imx7.dtb \
 	imx7d-colibri-emmc-eval-v3.dtb \
