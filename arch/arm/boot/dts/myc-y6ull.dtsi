@@ -119,6 +119,12 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_ecspi1_1 &pinctrl_ecspi1_cs_1>;
 	status = "okay";
+
+	spidev@0{
+		compatible = "linux,spidev";
+		reg = <0>;
+		spi-max-frequency = <57600000>;
+	};
 };
 
 &fec1 {
