@@ -98,6 +98,12 @@
 				MX6UL_PAD_LCD_DATA21__UART8_DCE_RX	0x1b0b1
 			>;
 		};
+
+		pinctrl_pwm1: pwm1grp {
+			fsl,pins = <
+				MX6UL_PAD_GPIO1_IO08__PWM1_OUT   0x1b0b1
+			>;
+		};
     };
 };
 
@@ -121,7 +127,8 @@
 	status = "okay";
 
 	spidev@0{
-		compatible = "linux,spidev";
+		//compatible = "linux,spidev";
+		compatible = "rohm,dh2228fv"; /* Same as "spidev" but without errors at boot. Search "buggy DT" to understand */
 		reg = <0>;
 		spi-max-frequency = <57600000>;
 	};
@@ -173,6 +180,12 @@
 	pinctrl-0 = <&pinctrl_uart8>;
 	rts-gpios = <&gpio3 9 GPIO_ACTIVE_HIGH>;
 	linux,rs485-enabled-at-boot-time;
+	status = "okay";
+};
+
+&pwm1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_pwm1>;
 	status = "okay";
 };
 
