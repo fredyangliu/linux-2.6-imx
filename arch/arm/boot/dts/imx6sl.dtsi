@@ -148,6 +148,9 @@
 		ocrams: sram@900000 {
 			compatible = "fsl,lpm-sram";
 			reg = <0x900000 0x4000>;
+			ranges = <0 0x900000 0x4000>;
+			#address-cells = <1>;
+			#size-cells = <1>;
 			clocks = <&clks IMX6SL_CLK_OCRAM>;
 		};
 
