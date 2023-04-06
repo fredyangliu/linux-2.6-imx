@@ -203,18 +203,27 @@
 		ocrams: sram@8f8000 {
 			compatible = "fsl,lpm-sram";
 			reg = <0x8f8000 0x4000>;
+			ranges = <0 0x8f8000 0x4000>;
+                        #address-cells = <1>;
+                        #size-cells = <1>;
 			clocks = <&clks IMX6SX_CLK_OCRAM_S>;
 		};
 
 		ocrams_ddr: sram@900000 {
 			compatible = "fsl,ddr-lpm-sram";
 			reg = <0x900000 0x1000>;
+			ranges = <0 0x900000 0x1000>;
+                        #address-cells = <1>;
+                        #size-cells = <1>;
 			clocks = <&clks IMX6SX_CLK_OCRAM>;
 		};
 
 		ocram: sram@901000 {
 			compatible = "mmio-sram";
 			reg = <0x901000 0x1F000>;
+			ranges = <0 0x901000 0x1F000>;
+                        #address-cells = <1>;
+                        #size-cells = <1>;
 			clocks = <&clks IMX6SX_CLK_OCRAM>;
 		};
 
