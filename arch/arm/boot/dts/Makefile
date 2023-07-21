@@ -679,7 +679,16 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
 	imx6ull-phytec-segin-ff-rdk-nand.dtb \
 	imx6ull-phytec-segin-ff-rdk-emmc.dtb \
 	imx6ull-phytec-segin-lc-rdk-nand.dtb \
-	imx6ulz-14x14-evk.dtb
+	imx6ull-phytec-tauri-emmc.dtb \
+	imx6ull-phytec-tauri-nand.dtb \
+	imx6ull-tqma6ull2-mba6ulx.dtb \
+	imx6ull-tqma6ull2l-mba6ulx.dtb \
+	imx6ulz-14x14-evk.dtb \
+	imx6ulz-bsh-smm-m2.dtb \
+	mys-imx6ull-14x14-evk.dtb \
+	mys-imx6ull-14x14-evk-gpmi-weim.dtb \
+	mys-imx6ull-14x14-evk-gpmi-weim-myb6ulx.dtb \
+	mys-imx6ull-14x14-evk-gpmi-weim-mycy6ull.dts
 dtb-$(CONFIG_SOC_IMX7D) += \
 	imx7d-cl-som-imx7.dtb \
 	imx7d-colibri-aster.dtb \
