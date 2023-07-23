@@ -749,7 +749,8 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
 	mys-imx6ull-14x14-evk.dtb \
 	mys-imx6ull-14x14-evk-gpmi-weim.dtb \
 	mys-imx6ull-14x14-evk-gpmi-weim-myb6ulx.dtb \
-	mys-imx6ull-14x14-evk-gpmi-weim-mycy6ull.dts
+	mys-imx6ull-14x14-evk-gpmi-weim-mycy6ull.dts \
+	imx6ull-brightway-myc.dts
 dtb-$(CONFIG_SOC_IMX7D) += \
 	imx7d-cl-som-imx7.dtb \
 	imx7d-colibri-aster.dtb \
