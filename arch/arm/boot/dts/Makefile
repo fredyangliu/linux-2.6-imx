@@ -748,7 +748,9 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
 	mys-imx6ull-14x14-evk.dtb \
 	mys-imx6ull-14x14-evk-gpmi-weim.dtb \
 	mys-imx6ull-14x14-evk-gpmi-weim-myb6ulx.dtb \
-	mys-imx6ull-14x14-evk-gpmi-weim-mycy6ull.dts \
+	mys-imx6ull-14x14-evk-gpmi-weim-mycy6ull.dtb \
+	bw-group-controller-pcb08164.dtb \
+	bw-sign-controller-pcb08181.dtb \
 	starsbc-6ull.dtb \
 	starsbc-6ull-shield-comm.dtb \
 	starsom-cb-6ull-emmc.dtb \
