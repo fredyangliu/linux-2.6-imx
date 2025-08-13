@@ -745,10 +745,12 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
 	imx6ulz-14x14-evk-btwifi-sdio3_0.dtb \
 	imx6ulz-14x14-evk-gpmi-weim.dtb \
 	imx6ulz-14x14-evk-emmc.dtb \
+	myd-y6ull-emmc.dtb \
 	mys-imx6ull-14x14-evk.dtb \
 	mys-imx6ull-14x14-evk-gpmi-weim.dtb \
 	mys-imx6ull-14x14-evk-gpmi-weim-myb6ulx.dtb \
 	mys-imx6ull-14x14-evk-gpmi-weim-mycy6ull.dtb \
+	mys-imx6ull-14x14-evk-emmc-mycy6ull.dtb \
 	bw-group-controller-pcb08164.dtb \
 	bw-sign-controller-pcb08181.dtb \
 	starsbc-6ull.dtb \
