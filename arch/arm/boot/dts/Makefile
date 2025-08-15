@@ -753,6 +753,7 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
 	mys-imx6ull-14x14-evk-emmc-mycy6ull.dtb \
 	bw-group-controller-pcb08164.dtb \
 	bw-sign-controller-pcb08181.dtb \
+	bw-group-controller-pcb08164-emmc.dtb \
 	starsbc-6ull.dtb \
 	starsbc-6ull-shield-comm.dtb \
 	starsom-cb-6ull-emmc.dtb \
