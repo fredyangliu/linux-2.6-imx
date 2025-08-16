@@ -182,12 +182,6 @@
 				MX6UL_PAD_CSI_PIXCLK__UART6_DCE_RX	0x1b0b1
 			>;
 		};
-
-		pinctrl_wdog: wdoggrp {
-			fsl,pins = <
-				MX6UL_PAD_LCD_RESET__WDOG1_WDOG_ANY    0x30b0
-			>;
-		};
 	//};
 };
 
@@ -249,8 +243,7 @@
 
 &wdog1 {
 	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_wdog>;
-	fsl,wdog_b;
+    status = "okay";
 };
 
 /************************************************************/
